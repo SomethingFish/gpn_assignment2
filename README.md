@@ -1,4 +1,4 @@
-# Game Production Module Assignment 2
+# Game Production Module Assignment 2 - Data Jump
 
 This is a 2D platformer game set in a sci-fi world. Note that this is only a prototype and does not represent the full game.
 
