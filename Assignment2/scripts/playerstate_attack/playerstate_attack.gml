@@ -1,6 +1,4 @@
 function PlayerState_Attack(){
-hsp = 0;
-vsp = 0;
 
 //Start of attack
 var hitbox_type = sPlayerAttackHitBox;
@@ -45,6 +43,10 @@ var hitByAttackNow = ds_list_create();
 var hits = instance_place_list(x,y,oEnemy,hitByAttackNow,false);
 if (hits > 0)
 {
+	if (sprite_index == sPlayerJumpAttack_Down)
+	{
+		vsp = -9;
+	}
 	for (var i = 0; i < hits; i++)
 	{
 		//If this instance has not yet been hit by this attack
@@ -54,8 +56,27 @@ if (hits > 0)
 			ds_list_add(hitByAttack, hitID);
 			with (hitID)
 			{
-				
+				audio_play_sound(EnemyHitSound, 5, false);
+				hp = hp - 5;
+				flash = 3;
 			}
+		}
+	}
+}
+var corpseHits = instance_place_list(x,y,oEnemyDead,hitByAttackNow,false);
+if (corpseHits > 0)
+{
+	if (sprite_index == sPlayerJumpAttack_Down)
+	{
+		vsp = -9;
+	}
+	for (var i = 0; i < hits; i++)
+	{
+		//If this instance has not yet been hit by this attack
+		var hitID = hitByAttackNow[| i];
+		if(ds_list_find_index(hitByAttack, hitID) == -1)
+		{
+			ds_list_add(hitByAttack, hitID);
 		}
 	}
 }

@@ -1,0 +1,1 @@
+SlideTransition(TRANSITION_MODE.RESTART);
